@@ -1,0 +1,66 @@
+//@font-face {
+// font-family: 'Canaro Light';
+//  src: url(/Fonts/rene_bieder_-_canaro_light-webfont.woff);
+//  font-weight: normal;
+//  font-smoothing: antialiased;
+//}
+//@font-face {
+//  font-family: 'Canaro Extra Light';
+//  src: url(/Fonts/rene_bieder_-_canaro_extralight-webfont.woff);
+//  font-weight: normal;
+//  font-smoothing: antialiased;
+//}
+
+$plx: (
+  layers: (
+    // bg url                 z-index
+    1: 'http://boerdam.nl/wp-content/uploads/bg.jpg'          ,
+    2: null                                                   55,
+    3: 'http://boerdam.nl/wp-content/uploads/lens-flare.png'  30, 
+    4: 'http://boerdam.nl/wp-content/uploads/grass.png'       40,      
+    5: 'http://boerdam.nl/wp-content/uploads/bush.png'        50,
+    6: 'http://boerdam.nl/wp-content/uploads/sun.png'         60
+  ),
+  ratio: 5530 3687,
+  zoom: 15,
+  responsive: true
+);
+
+@import 
+  "utils",
+  "plx";
+
+[ng-plx-layer="2"] {
+  * { mouse-events: none; }
+  h1 {
+    margin: 0;
+    font-family: 'CanaroLight', 'Canaro','Open Sans', sans-serif;
+    position: absolute;
+    z-index: 500;
+    color: white;
+    @include abs();
+    top: auto;
+    text-align: center;
+    line-height: 1.3;
+    padding: 17.5% 15%;
+    text-shadow: 0 0 f-size(5em) rgba(black, 1);
+    background: linear-gradient(rgba(black, 0), rgba(black, 0.25));
+    font-size: 33px;
+
+    @if map-get($plx, responsive) {
+      @media screen and (min-width: 690px) { font-size: 45px; }
+      @media screen and (min-width: 1000px) { font-size: 60px; }
+    }
+
+    small {
+      margin-top: 1em;
+      display: block;
+      font-size: 0.4em;
+    }
+  }
+}
+
+[ng-plx-layer="5"] {
+  opacity: 0.9;
+  right: -20%;
+}

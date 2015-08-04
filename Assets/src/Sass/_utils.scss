@@ -1,0 +1,23 @@
+@function ratio($ratio) {
+  @return percentage(nth($ratio, 2) / nth($ratio, 1));
+}
+
+@mixin abs($top: 0, $right: $top, $bottom: $top, $left: $top) {
+  position:absolute;
+  top:$top; right:$right; bottom:$bottom; left:$left;
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@mixin max-height($min-width) {
+  @media screen and (min-width: $min-width) {
+    height: ((nth(map-get($plx, ratio), 2) / nth(map-get($plx, ratio), 1)) * $min-width);
+    padding-bottom: 0;
+  }
+}

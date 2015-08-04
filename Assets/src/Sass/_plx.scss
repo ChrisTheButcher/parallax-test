@@ -1,0 +1,58 @@
+$plx: (
+  layers: (
+    1: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/bkg-fs8.png',
+    2: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/1-specks-fs8.png',
+    3: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/2-shark-fs8.png',
+    4: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/3-bubbles-fs8.png',
+    5: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/4-bubbles-fs8.png',
+    6: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/5-diver-fs8.png',
+    7: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/6-bubbles-fs8.png',
+    8: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/7-bubbles-fs8.png',
+    9: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/8-rays-fs8.png',
+    10: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/49914/9-specks-fs8.png'  
+  ),
+  ratio: 16 3,
+  zoom: 10,
+  responsive: true
+) !default;
+
+[ng-plx-container] {
+  position: relative;
+  height: 0;
+  padding-bottom: ratio(map-get($plx, ratio));  
+  overflow: hidden;
+  font-size: 16px;
+  
+  @media screen and (min-width: 1000px) {
+    height: 660px;
+    height: 100vh;
+    height: calc(100vh - 86px);
+    padding-bottom: 0;
+  }
+}
+
+[ng-plx-root] { @include abs; }
+
+[ng-plx-layer] {
+    @include abs(-#{map-get($plx, zoom)}vw);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    mouse-events: none;
+}
+
+@each $name, $list in map-get($plx, layers) {
+  $url: nth($list, 1); 
+  @if length($list) == 2 {
+    $z: nth($list, 2);
+  } 
+  
+  [ng-plx-layer='#{$name}'] {
+    @if $url {
+      background-image: url(#{$url}); 
+    }
+    @if length($list) == 2 {
+      z-index: $z;
+    }
+  }
+}

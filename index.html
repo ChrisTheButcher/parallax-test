@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>Fun with parallax.</title>
+    <link rel="stylesheet" href="/Assets/dist/Css/main.min.css">
+  </head>
+  
+  <body>
+    <div ng-plx-container>
+      <div ng-app="parallaxTest" ng-plx-root auto-updater>
+        
+        <div ng-plx-layer="1" ng-plx-x="-15" ng-plx-y="-13" data-description="bg"></div>   
+        <div ng-plx-layer="2" ng-plx-x="7.5" ng-plx-y="3.5" data-description="caption">
+          <h1>digital happiness <small>If you want something in your life you've never had.<br>You'll have to do something you've never done.</small></h1>
+        </div>
+        <div ng-plx-layer="3" ng-plx-x="70" ng-plx-y="60" data-description="lens-flare"></div>        
+        <div ng-plx-layer="4" ng-plx-x="-25" ng-plx-y="-5" data-description="grass"></div>    
+        <div ng-plx-layer="5" ng-plx-x="-30" ng-plx-y="-10" data-description="bush"></div>    
+        <div ng-plx-layer="6" ng-plx-x="-150" ng-plx-y="-105" data-description="sun"></div>  
+      </div> 
+    </div>
+    
+    <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js'></script>
+    <script src="js/index.js"></script>
+  </body>
+
+</html>
